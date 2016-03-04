@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using static System.Math;
 
@@ -7,6 +8,17 @@ namespace EffectiveCSharpSamples.Generator
     {
         public static IEnumerable<Point> GenerateSpiral(double branchDistance, int pointsPerRevolution)
         {
+            if (pointsPerRevolution == 0)
+                throw new ArgumentOutOfRangeException(nameof(pointsPerRevolution), 
+                "points per revolution cannot be 0");
+            if (pointsPerRevolution < 0)
+                throw new ArgumentOutOfRangeException(nameof(pointsPerRevolution),
+                "points per revolution cannot be negative");
+            
+            if (!(branchDistance > 0))
+                throw new ArgumentOutOfRangeException(nameof(branchDistance),
+                "branch distance must be positive");
+            
             var delta = PI * 2 / pointsPerRevolution;
             var archimedesConstant = branchDistance / (2 * PI);
             var theta = 0.0;
