@@ -26,7 +26,7 @@ namespace EffectiveCSharpSamples.EventInvoke
             do
             {
                 var nextKey = Console.ReadKey(true);
-                OnKeyPress(this, new KeyPressArgs(nextKey.KeyChar,
+                OnKeyPress?.Invoke(this, new KeyPressArgs(nextKey.KeyChar,
                     ((nextKey.Modifiers & ConsoleModifiers.Control) != 0),
                     ((nextKey.Modifiers & ConsoleModifiers.Alt) != 0)));
                 done = nextKey.KeyChar == exit;
