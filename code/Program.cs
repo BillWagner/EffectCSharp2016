@@ -25,6 +25,7 @@ namespace EffectiveCSharpSamples
                     engine.ReadKeys('e');
                     done = true;
                 }
+                catch (Exception e) when (logException(e)) { }
                 catch (InvalidOperationException e)when (count < 5)
                 {
                     Console.WriteLine("You went backwards in the alphabet");
@@ -36,6 +37,15 @@ namespace EffectiveCSharpSamples
             Console.WriteLine("writing keys");
             foreach (var c in engine.AllKeys)
                 Console.WriteLine(c);
+        }
+   
+        private static bool logException(Exception e)
+        { 
+            var oldColor = Console.ForegroundColor; 
+            Console.ForegroundColor = ConsoleColor.Red; 
+            Console.WriteLine("Error: {0}", e); 
+            Console.ForegroundColor = oldColor; 
+            return false; 
         }
     }
 }
