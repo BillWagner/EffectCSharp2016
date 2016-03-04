@@ -16,6 +16,11 @@ namespace EffectiveCSharpSamples
             var engine = new KeyboardReader();
             engine.OnKeyPress += (_, keyArgs) => Console.WriteLine($"Key: {keyArgs.Key}, Alt: {keyArgs.IsAlt}, Ctrl: {keyArgs.IsCtrl}");
             engine.ReadKeys('e');
+            
+            Console.WriteLine("writing keys");
+            foreach (var c in engine.AllKeys)
+                Console.WriteLine(c);
+
         }
     }
 }

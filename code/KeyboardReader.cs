@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace EffectiveCSharpSamples.EventInvoke
 {    
@@ -20,6 +21,8 @@ namespace EffectiveCSharpSamples.EventInvoke
     {
         public event EventHandler<KeyPressArgs> OnKeyPress;
 
+        public IList<char> AllKeys => new List<char>();
+
         internal void ReadKeys(char exit)
         {
             var done = false;
@@ -30,6 +33,7 @@ namespace EffectiveCSharpSamples.EventInvoke
                     ((nextKey.Modifiers & ConsoleModifiers.Control) != 0),
                     ((nextKey.Modifiers & ConsoleModifiers.Alt) != 0)));
                 done = nextKey.KeyChar == exit;
+                AllKeys.Add(nextKey.KeyChar);
             } while (!done);
         }
     }
