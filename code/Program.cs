@@ -25,15 +25,10 @@ namespace EffectiveCSharpSamples
                     engine.ReadKeys('e');
                     done = true;
                 }
-                catch (InvalidOperationException e)
+                catch (InvalidOperationException e)when (count < 5)
                 {
-                    if (count < 5)
-                    {
-                        Console.WriteLine("You went backwards in the alphabet");
-                        count++;
-                    }
-                    else
-                        throw;
+                    Console.WriteLine("You went backwards in the alphabet");
+                    count++;
                 }
             } while (!done);
 
