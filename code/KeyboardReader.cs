@@ -32,10 +32,12 @@ namespace EffectiveCSharpSamples.EventInvoke
             do
             {
                 var nextKey = Console.ReadKey(true);
-                OnKeyPress?.Invoke(this, new KeyPressArgs(nextKey.KeyChar,
+                OnKeyPress(this, new KeyPressArgs(nextKey.KeyChar,
                     ((nextKey.Modifiers & ConsoleModifiers.Control) != 0),
                     ((nextKey.Modifiers & ConsoleModifiers.Alt) != 0)));
                 done = nextKey.KeyChar == exit;
+                if ((nextKey.KeyChar < PreviousKey) && !done)
+                    throw new InvalidOperationException();
                 AllKeys.Add(nextKey.KeyChar);
             } while (!done);
         }

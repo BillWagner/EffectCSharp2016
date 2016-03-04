@@ -15,13 +15,32 @@ namespace EffectiveCSharpSamples
                 
             var engine = new KeyboardReader();
             engine.OnKeyPress += (_, keyArgs) => Console.WriteLine($"Key: {keyArgs.Key}, Alt: {keyArgs.IsAlt}, Ctrl: {keyArgs.IsCtrl}");
-            engine.ReadKeys('e');
-            
+
+            int count = 0;
+            var done = false;
+            do
+            {
+                try
+                {
+                    engine.ReadKeys('e');
+                    done = true;
+                }
+                catch (InvalidOperationException e)
+                {
+                    if (count < 5)
+                    {
+                        Console.WriteLine("You went backwards in the alphabet");
+                        count++;
+                    }
+                    else
+                        throw;
+                }
+            } while (!done);
+
             Console.WriteLine($"The last key was: {engine.PreviousKey}");
             Console.WriteLine("writing keys");
             foreach (var c in engine.AllKeys)
                 Console.WriteLine(c);
-
         }
     }
 }
