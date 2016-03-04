@@ -1,12 +1,16 @@
 ﻿using System;
+using EffectiveCSharpSamples.Generator;
 
-namespace ConsoleApplication
+namespace EffectiveCSharpSamples
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var sequence = ArchimedesSpiral.GenerateSpiral(1, 512);
+            foreach (var point in sequence)
+                Console.WriteLine(point);
+ 
         }
     }
 }
