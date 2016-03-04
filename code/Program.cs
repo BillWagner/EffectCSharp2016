@@ -10,7 +10,6 @@ namespace EffectiveCSharpSamples
             var sequence = ArchimedesSpiral.GenerateSpiral(1, 512);
             foreach (var point in sequence)
                 Console.WriteLine(point);
- 
         }
     }
 }

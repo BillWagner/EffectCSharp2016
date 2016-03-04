@@ -11,15 +11,13 @@ namespace EffectiveCSharpSamples.Generator
             var archimedesConstant = branchDistance / (2 * PI);
             var theta = 0.0;
 
-            var spiral = new List<Point>();
             while (theta < PI * 6)
             {
                 var x = archimedesConstant * theta * Cos(theta);
                 var y = archimedesConstant * theta * Sin(theta);
                 theta += delta;
-                spiral.Add( new Point(x, y));
+                yield return new Point(x, y);
             }
-            return spiral;
         }
     }
 }
