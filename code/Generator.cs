@@ -19,6 +19,11 @@ namespace EffectiveCSharpSamples.Generator
                 throw new ArgumentOutOfRangeException(nameof(branchDistance),
                 "branch distance must be positive");
             
+            return GenerateSpiralImpl(branchDistance, pointsPerRevolution);
+        }
+        
+        private static IEnumerable<Point> GenerateSpiralImpl(double branchDistance, int pointsPerRevolution)
+        {
             var delta = PI * 2 / pointsPerRevolution;
             var archimedesConstant = branchDistance / (2 * PI);
             var theta = 0.0;
