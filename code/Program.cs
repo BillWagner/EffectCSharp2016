@@ -17,6 +17,7 @@ namespace EffectiveCSharpSamples
             engine.OnKeyPress += (_, keyArgs) => Console.WriteLine($"Key: {keyArgs.Key}, Alt: {keyArgs.IsAlt}, Ctrl: {keyArgs.IsCtrl}");
             engine.ReadKeys('e');
             
+            Console.WriteLine($"The last key was: {engine.PreviousKey}");
             Console.WriteLine("writing keys");
             foreach (var c in engine.AllKeys)
                 Console.WriteLine(c);

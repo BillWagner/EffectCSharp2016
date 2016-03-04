@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EffectiveCSharpSamples.EventInvoke
 {    
@@ -21,7 +22,9 @@ namespace EffectiveCSharpSamples.EventInvoke
     {
         public event EventHandler<KeyPressArgs> OnKeyPress;
 
-        public IList<char> AllKeys => new List<char>();
+        public IList<char> AllKeys = new List<char>();
+
+        public char PreviousKey => AllKeys.LastOrDefault();
 
         internal void ReadKeys(char exit)
         {
